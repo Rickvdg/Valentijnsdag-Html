@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title> FIJNE VALENTIJNSDAG </title>
+    <link rel="stylesheet" href="main.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Sansita+Swashed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body class="center-wrapper">
+
+    <div class="crt"></div>
+
+    <div id="intro">
+        <h1 class="slowType" style="margin-bottom: 1em; margin-top: 1em; display: none;">
+            Je pc is nu overgenomen.
+            Helaas zal je nu niet meer kunnen gamen en zal je mij al je aandacht voor altijd moeten geven.
+            .  .  .  .  .
+            Je zal de antwoorden op de volgende vragen goed moeten hebben om weer bij je computer te kunnen EN om je cadeautjes te krijgen.
+        </h1>
+        <div class="center">
+            <button id="quizknop" class="button-49" role="button" onclick="gotoquiz()">Ga naar de quiz</button>
+        </div>
+    </div>
+
+    <div id="quiz" style="display: none">
+        <div id="question"></div>
+        <div id="answers"></div>
+        <div id="response"></div>
+    </div>
+
+    <div id="love" class="center-wrapper" onclick="sluiten()">
+        <h1>Fijne valentijnsdag<br/>Ik hou van jouuu</h1>
+        <div class="heart-wrapper">
+            <div class="heart"></div>
+        </div>
+        <h1>
+            Je mag nu je cadeautjes hebben
+            <small>(klik het scherm om terug te keren naar je PC)</div>
+        </h1>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
