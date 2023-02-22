@@ -18,7 +18,9 @@ function getQuestion(index) {
     $('#response, #answers').html('').show();
     
     for (let aIndex = 0; aIndex < questions[index].answers.length; aIndex++) {
-        $('#answers').append(`<button type="button" class="button-49" style="display:none" onclick="answerQuestion(${aIndex})">${questions[index].answers[aIndex]}</button>`);
+        if (questions[index].removedAnswers.indexOf(aIndex) == -1) {
+            $('#answers').append(`<button type="button" class="button-49" style="display:none" onclick="answerQuestion(${aIndex})">${questions[index].answers[aIndex]}</button>`);
+        }
         
         if (questions[index].answers[aIndex] === '<3') {
             $('#answers > button').addClass('pink');
@@ -127,7 +129,8 @@ function answerQuestion(index) {
                     if (goodAnswer) {
                         nextQuestion();
                     } else {
-                        getQuestion(currentQuestion);
+                        questions[currentQuestion].removedAnswers.push(index);
+                        getQuestion(currentQuestion); // TODO slowtype verwijderen
                     }
                 });
             }, 2000);
@@ -150,53 +153,61 @@ const questions = [
         "answers": ["Hondje", "Avocado", "Kwal", "Dino"],
         "rightAnswer": [0],
         "responseRight": "Dat was het goede antwoord.|Door naar de volgende vraag.",
-        "responseWrong": "Dat was het goede antwoord.|Oh wacht... toch niet....."
+        "responseWrong": "Dat was het goede antwoord.|Oh wacht... toch niet.....",
+        "removedAnswers": []
     },
     {
         "question": "Wanneer was de eerste blackout waar we samen met z'n 2en heen zijn gegaan?",
         "answers": ["5 oktober 2019", "15 november 2019", "19 januari 2020", "7 februari 2020"],
         "rightAnswer": [3],
         "responseRight": "Dit was het goede antwoord.",
-        "responseWrong": "Helaas."
+        "responseWrong": "Helaas.",
+        "removedAnswers": []
     },
     {
         "question": "Wanneer zijn we voor het eerst sushi gaan eten en had ik je ouders voor het eerst gezien?",
         "answers": ["7 januari 2020", "22 februari 2020", "2 maart 2020", "15 april 2020"],
         "rightAnswer": [1],
-        "responseRight": "Dit was het goede antwoord.|Ik zou eigenlijk wel weer naar dat restaurant willen gaan.",
-        "responseWrong": "Helaas, niet goed."
+        "responseRight": "Ik zou eigenlijk wel weer naar dat restaurant willen gaan.",
+        "responseWrong": "Helaas, niet goed.",
+        "removedAnswers": []
     },
     {
         "question": "Hoe vaak knippert een persoon gemiddeld per dag?",
         "answers": ["140", "1.400", "14.000", "140.000"],
         "rightAnswer": [2],
         "responseRight": "Wauw, alweer goed.",
-        "responseWrong": "Ik had wel verwacht dat je dit zou weten..."
+        "responseWrong": "Ik had wel verwacht dat je dit zou weten...",
+        "removedAnswers": []
     },
     {
         "question": "Welk van de volgende opties vind ik het leukste aan jou?",
         "answers": ["Je gezicht", "Je borsten", "Je billen", "Je persoonlijkheid"],
         "rightAnswer": [0,1,2,3],
-        "responseRight": "FOUT. Je bent perfect in elk opzicht."
+        "responseRight": "FOUT. Je bent perfect in elk opzicht.",
+        "removedAnswers": []
     },
     {
         "question": "En wat vind je het leukste aan mij?",
         "answers": ["Mijn gezicht", "Mijn tepels", "Mijn grote pik", "Mijn persoonlijkheid"],
         "rightAnswer": [0,1,2,3],
-        "responseRight": "Ik dacht al dat je dat ging kiezen.|Het staat genoteerd."
+        "responseRight": "Ik dacht al dat je dat ging kiezen.|Het staat genoteerd.",
+        "removedAnswers": []
     },
     {
         "question": "Ben ik de grappigste persoon met de beste humor en vergeet ik nooit iets wat je mij verteld?",
         "answers": ["100%", "Sws niet"],
         "rightAnswer": [0],
         "responseRight": "Fijn dat we het daar over eens zijn",
-        "responseWrong": "Hoe kreeg je dat voor elkaar?"
+        "responseWrong": "Hoe kreeg je dat voor elkaar?",
+        "removedAnswers": []
     },
     {
         "question": "Wil je mijn valentijn zijn?",
         "answers": ["\<3", "\<\\3"],
         "rightAnswer": [0],
         "responseRight": ":)",
-        "responseWrong": ":(|Geen cadeautjes voor jou"
+        "responseWrong": ":(|Geen cadeautjes voor jou",
+        "removedAnswers": []
     },
 ];
